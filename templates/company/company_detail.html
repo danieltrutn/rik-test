@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}{{ company.name }}{% endblock %}
+
+{% block content %}
+<a class="btn-back" href="{% url 'home' %}">&lt; Tagasi avalehele</a>
+
+<h1>{{ company.name }}</h1>
+<div class="company-blc">
+    <p>Registrikood: {{ company.registration_code }}</p>
+    <p>Kapital: {{ company.capital }} €</p>
+    <p>Asutamiskuupäev: {{ company.establishment_date }}</p>
+    
+    <h2>Osanikud</h2>
+    <ul>
+        {% for shareholder in shareholders %}
+            <li>
+                {% if shareholder.personal_code %}
+                    {{ shareholder.name }} - Isikukood: {{ shareholder.personal_code }}
+                {% elif shareholder.registration_code %}
+                    {{ shareholder.name }} - Registrikood: {{ shareholder.registration_code }}
+                {% endif %}
+                (Osa suurus: {{ shareholder.share_amount }} €)
+                {% if shareholder.is_founder %}
+                    <strong>- Asutaja</strong>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

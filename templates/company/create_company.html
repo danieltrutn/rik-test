@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block title %}Lisa uus osaühing{% endblock %}
+
+{% block content %}
+<a href="{% url 'home' %}" class="btn-back">< Tagasi valehele</a>
+
+<h1>Lisa uus osaühing</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    <fieldset class="fieldset-shareholder-data">
+        <legend>Osaühingu andmed</legend>
+        {{ form.as_p }}
+    </fieldset>
+
+    <fieldset>
+        <legend>Osanikud</legend>
+        {{ shareholder_formset.management_form }}
+        <div id="shareholder-forms-container">
+            {% for form in shareholder_formset %}
+                <div class="shareholder-form">
+                    <div>
+                        <label for="{{ form.shareholder_type.id_for_label }}">Osaniku tüüp:</label>
+                        {{ form.shareholder_type }}
+                    </div>
+                    
+                    <div>
+                        <label for="{{ form.name.id_for_label }}">Nimi:</label>
+                        {{ form.name }}
+                    </div>
+
+                    <div class="registration-code-field">
+                        <label for="id_form-0-registration_code">Registrikood:</label>
+                        <input type="text" name="form-0-registration_code" maxlength="7" id="id_form-0-registration_code">
+                    </div>
+                    <div class="personal-code-field">
+                        <label for="id_form-0-personal_code">Isikukood:</label>
+                        <input type="text" name="form-0-personal_code" maxlength="11" id="id_form-0-personal_code">
+                    </div>
+                    
+                    <div>
+                        <label for="{{ form.share_amount.id_for_label }}">Osa suurus (EUR):</label>
+                        {{ form.share_amount }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="button" id="add-shareholder" class="btn">Lisa omaniku</button>
+    </fieldset>
+    
+    {% if form.non_field_errors %}
+    <div class="form-errors">
+        {% for error in form.non_field_errors %}
+            <p class="error">{{ error }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}    
+    <button type="submit" class="btn btn-primary">Salvesta</button>
+</form>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const container = document.getElementById("shareholder-forms-container");
+
+        function updateFieldVisibility(formElement) {
+            const typeField = formElement.querySelector('[name$="-shareholder_type"]');
+            const personalCodeField = formElement.querySelector('.personal-code-field');
+            const registrationCodeField = formElement.querySelector('.registration-code-field');
+
+            if (typeField && personalCodeField && registrationCodeField) {
+                const selectedValue = typeField.value;
+
+                if (selectedValue === "1") {
+                    personalCodeField.style.display = "block";
+                    registrationCodeField.style.display = "none";
+                } else if (selectedValue === "2") {
+                    personalCodeField.style.display = "none";
+                    registrationCodeField.style.display = "block"; 
+                } else {
+                    personalCodeField.style.display = "none";
+                    registrationCodeField.style.display = "none";
+                }
+            }
+        }
+
+        Array.from(container.children).forEach((formElement) => {
+            updateFieldVisibility(formElement);
+
+            const typeField = formElement.querySelector('[name$="-shareholder_type"]');
+            if (typeField) {
+                typeField.addEventListener("change", function () {
+                    updateFieldVisibility(formElement);
+                });
+            }
+        });
+
+        const addButton = document.getElementById("add-shareholder");
+        const totalForms = document.getElementById("id_form-TOTAL_FORMS");
+
+        addButton.addEventListener("click", function () {
+            const newFormIndex = parseInt(totalForms.value);
+            const firstForm = container.children[0];
+            const newForm = firstForm.cloneNode(true);
+            newForm.innerHTML = newForm.innerHTML.replace(/form-(\d+)-/g, `form-${newFormIndex}-`);
+            newForm.querySelectorAll("input").forEach((input) => {
+                input.value = "";
+            });
+
+            container.appendChild(newForm);
+            totalForms.value = newFormIndex + 1;
+            updateFieldVisibility(newForm);
+            const typeField = newForm.querySelector('[name$="-shareholder_type"]');
+            if (typeField) {
+                typeField.addEventListener("change", function () {
+                    updateFieldVisibility(newForm);
+                });
+            }
+        });
+    });
+</script>
+{% endblock %}

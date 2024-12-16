@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Avaleht{% endblock %}
+
+{% block content %}
+<div class="wrapper">
+    <h1>Osaühingute otsing</h1>
+
+    <form method="get" action="{% url 'home' %}">
+        <input class="search-bar" type="text" name="query" placeholder="Otsi..." value="{{ query }}">
+        <button class="submit-btn" type="submit">Otsi</button>
+    </form>
+
+    {% if query %}
+        <div class="company-list">
+            {% if companies %}
+                <ul>
+                    {% for company in companies %}
+                        <li>
+                            <a href="{% url 'company_detail' company.pk %}">{{ company.name }} ({{ company.registration_code }})</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                {% if companies.paginator.num_pages > 1 %}
+                    <div class="pagination">
+                        {% if companies.has_previous %}
+                            <a href="?query={{ query }}&page={{ companies.previous_page_number }}">Eelmine</a>
+                        {% endif %}
+                        <span>Leht {{ companies.number }} / {{ companies.paginator.num_pages }}</span>
+                        {% if companies.has_next %}
+                            <a href="?query={{ query }}&page={{ companies.next_page_number }}">Järgmine</a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+            {% else %}
+                <p>Ühtegi osaühingut ei leitud.</p>
+            {% endif %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

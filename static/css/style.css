@@ -1,0 +1,228 @@
+/* ------------------ Styles ------------- */
+body {
+    font-family: "Nunito", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #ffffff;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.wrapper {
+    margin: 40px 50px 0 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.overflow-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* ------------------ Headings ------------- */
+h1 {
+    color: #001C4C;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+h2 {
+    color: #001C4C;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 30px 0 10px;
+}
+
+legend {
+    font-size: 20px;
+    font-weight: bold;
+    color: #001c4c;
+    padding: 0;
+}
+
+/* ------------------ Navigation ------------- */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #BAD3FD;
+    padding: 15px 0;
+}
+
+.logo {
+    color: #0857DE;
+    font-size: 34px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.menu-link {
+    color: #001C4C;
+    font-size: 15px;
+    font-weight: 400;
+    text-decoration: unset;
+    margin-left: 15px;
+}
+
+/* ------------------ Forms ------------- */
+fieldset {
+    border: none;
+    padding: 0;
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0 0;
+    border: 1px solid #BAD3FD;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+label {
+    font-weight: 600;
+}
+
+.shareholder-form {
+    margin-top: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+}
+
+.fieldset-shareholder-data {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 30px;
+}
+
+.label-shareholder {
+    margin-top: 30px;
+}
+
+/* ------------------ Buttons ------------- */
+.btn {
+    font-family: 'Nunito';
+    background-color: #0857DE;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    font-weight: 500;
+    border-radius: 30px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0745A2;
+}
+
+.btn-primary {
+    width: 100%;
+    background-color: #0857DE;
+    color: #fff;
+    font-weight: bold;
+    padding: 12px;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.btn-primary:hover {
+    background-color: #0745A2;
+}
+
+.btn-back {
+    font-family: Nunito;
+    display: inline-block;
+    background-color: #0857DE;
+    border-radius: 30px;
+    padding: 8px 14px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    margin: 30px 0;
+}
+
+.btn-back:hover {
+    background-color: #0745A2;
+}
+
+/* ------------------ Search ------------- */
+.search-bar {
+    font-family: Nunito;
+    width: 400px !important;
+    height: 50px !important;
+    border: none !important;
+    border-radius: 30px !important;
+    padding: 10px 20px !important;
+    font-size: 15px !important;
+    background-color: #f3f3f3 !important;
+}
+
+.submit-btn {
+    font-family: Nunito;
+    border: none;
+    background-color: #0857DE;
+    border-radius: 30px;
+    height: 50px;
+    width: 120px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+}
+
+/* ------------------ Lists ------------- */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: 5px 0;
+}
+
+.company-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.company-list li {
+    margin: 5px 0;
+    width: 518px;
+    padding: 10px 0;
+}
+
+.company-list a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.company-list a:hover {
+    text-decoration: underline;
+}
