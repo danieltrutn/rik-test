@@ -4,7 +4,7 @@ Django (5.1.4)
 SQLite3
 
 **Kloonige projekt GitHubist oma arvutisse:**
-git clone https://github.com/<teie-konto>/<projekti-nimi>.git
+git clone https://github.com/danieltrutn/rik-test.git
 
 **Projekti käivitamine kasutades Docker**
 docker-compose build
