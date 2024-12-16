@@ -7,10 +7,10 @@ SQLite3
 git clone https://github.com/danieltrutn/rik-test.git
 
 **Projekti käivitamine kasutades Docker**
-docker-compose build
-docker-compose up
+1) docker-compose build
+2) docker-compose up
 
 **Projekti käivitamine kasutades setup.sh**
-chmod +x setup.sh
-./setup.sh
+1) chmod +x setup.sh
+2) ./setup.sh
 
