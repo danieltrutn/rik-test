@@ -3,7 +3,7 @@ Docker
 Django (5.1.4)
 SQLite3
 
-**Kloonige projekt GitHubist oma arvutisse:**
+**Klooni projekt GitHubist:**
 git clone https://github.com/danieltrutn/rik-test.git
 
 **Projekti käivitamine kasutades Docker**
